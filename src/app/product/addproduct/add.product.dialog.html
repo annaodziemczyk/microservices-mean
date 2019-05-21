@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Add Product</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="data.name" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Quantity" [(ngModel)]="data.quantity" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Price" [(ngModel)]="data.price" required>
+  </mat-form-field>
+  <input placeholder="Select image file" type="file" [(ngModel)]="data.img" required>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="addProduct()" cdkFocusInitial>Add</button>
+</div>

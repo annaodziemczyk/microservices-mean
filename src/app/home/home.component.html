@@ -1,3 +1,16 @@
-<p>
-  home works!
-</p>
+<div class="product-list">
+  <div class="product-card" *ngFor="let product of dataSource; " >
+    <img class="product-img" [src]="product.img"/>
+    <div class="product-info">
+      <div class="product-title">{{product.name}}</div>
+      <div class="product-price">{{product.price}}</div>
+    </div>
+  </div>
+  <button class="fixed-fab-btn" mat-fab (click)="openAddDialog()">
+      <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+
+
+

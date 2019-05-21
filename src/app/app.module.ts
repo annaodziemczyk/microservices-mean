@@ -14,15 +14,22 @@ import { CatchErrorInterceptor } from './interceptors/http-error.interceptor';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
+import { CartComponent } from './cart/cart.component';
+import {MatDialogModule, MatGridListModule, MatTableModule} from "@angular/material";
+import {ProductModule} from "./product/product.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    CartComponent,
   ],
   imports: [
+    MatDialogModule,
+    MatTableModule,
+    MatGridListModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -31,6 +38,7 @@ import { HomeComponent } from './home/home.component';
     AuthModule,
     AdminModule,
     AppRoutingModule,
+    ProductModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
