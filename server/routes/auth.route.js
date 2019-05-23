@@ -1,9 +1,5 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const passport = require('passport');
-const userCtrl = require('../controllers/user.controller');
-const authCtrl = require('../controllers/auth.controller');
-const config = require('../config/config');
 var request = require("request");
 
 const router = express.Router();

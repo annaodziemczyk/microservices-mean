@@ -2,19 +2,22 @@ import {NgModule} from "@angular/core";
 import {AddProductDialog} from "./addproduct/addproduct.component";
 import {ProductService} from "./product.service";
 import {FormsModule} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule} from "@angular/material";
 
 
 @NgModule({
   imports: [
     FormsModule,
-    MatFormFieldModule
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
   ],
   declarations: [
     AddProductDialog
   ],
   providers: [
     ProductService
-  ]
+  ],
+  entryComponents: [AddProductDialog],
 })
 export class ProductModule { }
