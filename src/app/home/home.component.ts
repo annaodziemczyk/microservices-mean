@@ -1,7 +1,7 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
-import {AddProductDialog} from "../product/addproduct/addproduct.component";
+import {AddProductDialog} from "../product/addproduct/add.product.component";
 import {Product} from "../product/product";
 
 

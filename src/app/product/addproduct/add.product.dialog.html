@@ -9,7 +9,11 @@
   <mat-form-field>
     <input matInput placeholder="Price" [(ngModel)]="data.price" required>
   </mat-form-field>
-  <input placeholder="Select image file" type="file" [(ngModel)]="data.img" required>
+  <div class="file-uploader">
+    <angular-file-uploader
+      [config]="afuConfig">
+    </angular-file-uploader>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

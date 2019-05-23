@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/product', addProduct);
+router.post('/imageUpload', uploadImage);
 
 const CATALOGUE_SERVICE = "http://localhost:3002/api/";
+
+function uploadImage(req, res) {
+  console.log("body" + req.body)
+}
 
 function addProduct(req, res) {
   var options = {
