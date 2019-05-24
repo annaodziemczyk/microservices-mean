@@ -8,8 +8,6 @@ module.exports = router;
 router.post('/register', asyncHandler(register), login);
 router.post('/login', login);
 router.get('/me', token);
-// router.post('/login', passport.authenticate('local', { session: false }), login);
-// router.get('/me', passport.authenticate('jwt', { session: false }), login);
 
 
 async function register(req, res, next) {
@@ -61,8 +59,7 @@ function token(req, res) {
   var options = {
     uri: "http://localhost:3001/api/token",
     method: 'POST',
-    json: true,
-    body: req.body
+    headers: req.headers
   };
 
   request(options, function(error, response, body) {
@@ -72,10 +69,9 @@ function token(req, res) {
 
     if(response.statusCode!=200){
       res.statusCode=response.statusCode;
-      return res.json();
+      return res.send();
     }else{
-      let  auth = response.body;
-      return res.json(auth.user);
+      return res.send(response.body);
     }
 
   });

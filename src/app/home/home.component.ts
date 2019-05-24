@@ -24,14 +24,9 @@ export class HomeComponent implements OnInit {
   @Input() user: any = {};
   public products : Product[];
   dataSource = PRODUCT_DATA;
-  animal: string;
-  name: string;
 
-  constructor(private authService: AuthService,
-              private productService:ProductService,
-              private sanitizer:Sanitizer,
+  constructor(private productService:ProductService,
               public dialog: MatDialog) {
-    this.user = this.authService.getUser();
     this.productService.getProducts()
       .subscribe(products =>{
         console.log(products);
@@ -57,7 +52,6 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
     });
   }
 

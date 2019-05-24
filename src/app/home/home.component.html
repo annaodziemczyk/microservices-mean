@@ -15,7 +15,7 @@
     </div>
 
   </div>
-  <button class="fixed-fab-btn" mat-fab (click)="openAddDialog()">
+  <button *ngIf="user && user.isAdmin" class="fixed-fab-btn" mat-fab (click)="openAddDialog()">
       <mat-icon>add</mat-icon>
   </button>
 </div>
