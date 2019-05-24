@@ -23,7 +23,7 @@ export class AuthService {
         this.token.saveToken(data.token);
         observer.complete();
       }, (error: any) => {
-        throw new Error("Invalid");
+          observer.next();
       })
     });
   }

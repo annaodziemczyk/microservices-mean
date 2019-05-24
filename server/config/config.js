@@ -10,7 +10,7 @@ const envVarsSchema = Joi.object({
     .default('development'),
   SERVER_PORT: Joi.number()
     .default(4040),
-  JWT_SECRET: Joi.string().required()
+  JWT_SECRET: Joi.string()
     .description('JWT Secret required to sign')
 }).unknown()
   .required();

@@ -21,7 +21,7 @@
         </tr>
       </table>
     </form>
-    Error: {{error}}
+  <div *ngIf="loginFailed" style="color: red"> Invalid username or pasword</div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="login()" color="primary">Login</button>

@@ -17,7 +17,7 @@ function getProducts(req, res) {
   };
 
   request(options, function(error, response, body) {
-    console.log(response.body);
+
     if(error) {
       return error;
     }

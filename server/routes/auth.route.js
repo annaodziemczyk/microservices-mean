@@ -48,11 +48,9 @@ function login(req, res) {
 
     if(response.statusCode!=200){
       res.statusCode=response.statusCode;
-      res.message = "Invalid username or password";
-      return res.json();
+      return res.send();
     }else{
-      let  auth = response.body;
-      return res.json(auth.user);
+      return res.send(response.body);
     }
 
   });

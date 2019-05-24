@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   email: string;
   password: string;
-  error:string;
+  public loginFailed:boolean = false;
 
   ngOnInit() {
   }
@@ -22,10 +22,16 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.email, this.password)
     .subscribe(data => {
-      this.router.navigate(['']);
+      console.log(data);
+      if(data && data.user){
+        this.router.navigate(['']);
+      }else{
+        this.loginFailed=true;
+      }
+
+
     }, error => {
-      console.log("login error" +error);
-      this.error=error;
+      this.loginFailed=true;
     })
   }
 
