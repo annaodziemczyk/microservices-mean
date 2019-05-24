@@ -49,9 +49,10 @@ export class AddProductDialog {
   addProduct(): void {
     var fileReader = new FileReader();
 
-    console.log(this.data.img);
-    fileReader.readAsArrayBuffer(this.data.img);
-    fileReader.onload = this.imgLoaded;
+    this.productService.addProduct(this.data);
+    // console.log(this.data.img);
+    // fileReader.readAsArrayBuffer(this.data.img);
+    // fileReader.onload = this.imgLoaded;
 
   }
    imgLoaded(evt) {

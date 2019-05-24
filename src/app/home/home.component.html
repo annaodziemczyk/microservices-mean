@@ -1,5 +1,6 @@
 <div class="product-list">
-  <div class="product-card" *ngFor="let product of dataSource; " >
+  <!--<div class="product-card" *ngFor="let product of dataSource; " >-->
+  <div class="product-card" *ngFor="let product of products">
     <img class="product-img" [src]="product.img"/>
     <div class="product-info">
       <div class="product-title">{{product.name}}</div>
@@ -10,7 +11,4 @@
       <mat-icon>add</mat-icon>
   </button>
 </div>
-
-
-
 

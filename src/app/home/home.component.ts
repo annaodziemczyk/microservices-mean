@@ -1,8 +1,10 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit, Sanitizer} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {AddProductDialog} from "../product/addproduct/add.product.component";
 import {Product} from "../product/product";
+import {ProductService} from "../product/product.service";
+import * as _ from 'lodash';
 
 
 
@@ -20,12 +22,32 @@ const PRODUCT_DATA: any[] = [
 export class HomeComponent implements OnInit {
 
   @Input() user: any = {};
+  public products : Product[];
   dataSource = PRODUCT_DATA;
   animal: string;
   name: string;
 
-  constructor(private authService: AuthService, public dialog: MatDialog) {
+  constructor(private authService: AuthService,
+              private productService:ProductService,
+              private sanitizer:Sanitizer,
+              public dialog: MatDialog) {
     this.user = this.authService.getUser();
+    this.productService.getProducts()
+      .subscribe(products =>{
+        console.log(products);
+      this.products = _.map(products, (product)=>{
+        // var b64encoded = btoa(String.fromCharCode.apply(null, product.image.data));
+        // var datajpg = "data:" + product.image.contentType + ";base64," + b64encoded;
+        // this.base64Image = this._sanitizer.bypassSecurityTrustResourceUrl(datajpg);
+        var uints = new Uint8Array(product.image.data);
+        var base64 = btoa(String.fromCharCode.apply(null, uints));
+        var url = 'data:image/png;base64,' + base64;
+        product.img=url;
+        console.log(url);
+        return product;
+      });
+
+    });
   }
 
   openAddDialog(): void {
@@ -41,6 +63,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = PRODUCT_DATA;
+
   }
 
 }
