@@ -21,15 +21,16 @@ const PRODUCT_DATA: any[] = [
 })
 export class HomeComponent implements OnInit {
 
-  @Input() user: any = {};
+  private user:any;
   public products : Product[];
   dataSource = PRODUCT_DATA;
 
   constructor(private productService:ProductService,
+              private authService: AuthService,
               public dialog: MatDialog) {
     this.productService.getProducts()
+
       .subscribe(products =>{
-        console.log(products);
       this.products = _.map(products, (product)=>{
         // var b64encoded = btoa(String.fromCharCode.apply(null, product.image.data));
         // var datajpg = "data:" + product.image.contentType + ";base64," + b64encoded;
@@ -57,6 +58,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = PRODUCT_DATA;
+    this.authService.me().subscribe(data => {
+      this.user = data.user;
+    });
 
   }
 

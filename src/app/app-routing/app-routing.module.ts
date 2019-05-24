@@ -14,6 +14,9 @@ const routes: Routes = [{
   path: 'auth',
   loadChildren: 'app/auth/auth.module#AuthModule'
 }, {
+  path: 'customer',
+  loadChildren: 'app/customer/customer.module#CustomerModule'
+},{
   path: 'admin',
   loadChildren: 'app/admin/admin.module#AdminModule'
 }];

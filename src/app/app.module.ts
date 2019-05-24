@@ -18,6 +18,7 @@ import {HomeComponent} from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import {MatDialogModule, MatGridListModule, MatTableModule} from "@angular/material";
 import {ProductModule} from "./product/product.module";
+import {CustomerModule} from "./customer/customer.module";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {ProductModule} from "./product/product.module";
     SharedModule,
     AuthModule,
     AdminModule,
+    CustomerModule,
     AppRoutingModule,
     ProductModule,
   ],
