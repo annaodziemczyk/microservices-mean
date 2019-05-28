@@ -1,9 +1,9 @@
 <div class="account-view" fxLayout="row" fxLayoutGap="32px">
   <account-menu [user]="user" [selectedMenuItem]="selectedItem" [selectMenuItem]="selectMenuItem"></account-menu>
-  <div>
+  <div class="account-view-card">
     <cust-account *ngIf="selectedItem=='ACCOUNT'" [user]="user"></cust-account>
     <cust-orders *ngIf="selectedItem=='ORDERS'" [customer]="customer"></cust-orders>
-    <address-book *ngIf="selectedItem=='ADDRESS'" [customer]="customer"></address-book>
+    <address-book *ngIf="selectedItem=='ADDRESS'" [customer]="customer" [user]="user"></address-book>
   </div>
 
 

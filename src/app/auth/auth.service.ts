@@ -4,11 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { TokenStorage } from './token.storage';
+import {LocalStorage} from "@ngx-pwa/local-storage";
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http : HttpClient, private token: TokenStorage) {}
+  constructor(private http : HttpClient, private token: TokenStorage, private localStorage: LocalStorage) {}
 
   public $userSource = new Subject<any>();
 
@@ -18,9 +19,13 @@ export class AuthService {
         email,
         password
       }).subscribe((data: any) => {
-        observer.next({user: data.user});
-        this.setUser(data.user);
-        this.token.saveToken(data.token);
+        if(data){
+          observer.next({user: data.user});
+          this.setUser(data.user);
+          this.token.saveToken(data.token);
+        }else{
+          observer.next();
+        }
         observer.complete();
       }, (error: any) => {
           observer.next();
@@ -28,10 +33,11 @@ export class AuthService {
     });
   }
 
-  register(fullname : string, email : string, password : string, repeatPassword : string, roles: string[]) : Observable <any> {
+  register(firstName : string, lastName : string, email : string, password : string, repeatPassword : string, roles: string[]) : Observable <any> {
     return Observable.create(observer => {
       this.http.post('/api/auth/register', {
-        fullname,
+        firstName,
+        lastName,
         email,
         password,
         repeatPassword,
@@ -58,7 +64,10 @@ export class AuthService {
   me(): Observable<any> {
     return Observable.create(observer => {
       const tokenVal = this.token.getToken();
-      if (!tokenVal) return  observer.complete();
+
+      if (!tokenVal) {
+        return  observer.complete();
+      }
       const options = {
         headers: {
           Authentication: 'Bearer ' + tokenVal
@@ -76,5 +85,8 @@ export class AuthService {
     this.token.signOut();
     this.setUser(null);
     delete (<any>window).user;
+    this.localStorage.removeItem("cart").subscribe(()=>{
+
+    });
   }
 }

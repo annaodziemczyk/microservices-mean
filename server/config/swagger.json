@@ -77,7 +77,8 @@
       "User": {
         "required": [
           "email",
-          "fullname"
+          "firstName",
+          "lastName"
         ],
         "properties": {
           "_id": {
@@ -88,7 +89,10 @@
             "type": "string",
             "uniqueItems": true
           },
-          "fullname": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
             "type": "string"
           },
           "createdAt": {

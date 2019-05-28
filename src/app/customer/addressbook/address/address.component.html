@@ -1,0 +1,22 @@
+<label>{{title}}</label>
+<div class="address-display" fxLayout="column" fxLayoutGap="10px" *ngIf="!editMode">
+  <div>
+    <div>{{address.addressLine1}}</div>
+  </div>
+  <div *ngIf="address.addressLine2">
+    <div>{{address.addressLine2}}</div>
+  </div>
+  <div>
+    <div>{{address.city}}</div>
+  </div>
+  <div>
+    <div>{{address.country}}</div>
+  </div>
+  <div>
+    <div>{{address.postcode}}</div>
+  </div>
+  <button mat-raised-button (click)="changeMode()">Change</button>
+</div>
+
+<address-form *ngIf="editMode" [customer]="customer" [onSave]="onSave" [user]="user" [showHeader]="false"> </address-form>
+

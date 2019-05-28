@@ -1,0 +1,18 @@
+<div class="delivery-options">
+  <div fxLayout="row" fxLayoutGap="50px" >
+    <div fxLayout="column" fxLayoutGap="65px">
+      <div style="font-weight: bold" *ngFor="let option of deliveryOptions">&euro;{{option.price}}</div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="32px">
+      <div *ngFor="let option of deliveryOptions">
+        <div>{{option.display}}</div>
+        <div>{{option.estimatedDelivery}}</div>
+      </div>
+    </div>
+    <mat-radio-group fxLayout="column" fxLayoutGap="70px">
+
+      <mat-radio-button *ngFor="let option of deliveryOptions" [value]="option.name"></mat-radio-button>
+
+    </mat-radio-group>
+  </div>
+</div>

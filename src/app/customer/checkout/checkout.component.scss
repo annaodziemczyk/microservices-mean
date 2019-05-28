@@ -1,9 +1,13 @@
 .account-view{
   background-color: lightgray;
   padding: 15px;
-  height: 100vh;
+  height: 100%;
   width:100vw;
   font-size: 18px;
+  & h1{
+    text-align: center;
+    margin-bottom: 25px;
+  }
 }
 
 .account-view-card{
@@ -11,4 +15,9 @@
   height:auto;
   padding: 25px;
   background-color: white;
+}
+
+.order-btn{
+  margin-top: 20px;
+  width: 100%;
 }

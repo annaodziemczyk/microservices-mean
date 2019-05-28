@@ -35,7 +35,7 @@
     <mat-drawer-container class="customer-listview" [hasBackdrop]="false">
       <mat-drawer #drawer mode="push">I'm a drawer</mat-drawer>
       <mat-drawer-content>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table [dataSource]="customerList" class="mat-elevation-z8">
 
           <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>  </th>

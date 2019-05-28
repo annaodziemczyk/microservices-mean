@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {CustomerViewComponent} from "./accountview/account.view.component";
+import {CheckoutComponent} from "./checkout/checkout.component";
 
 const routes: Routes = [{
   path: 'customer',
@@ -11,7 +12,11 @@ const routes: Routes = [{
   }, {
     path: 'account',
     component: CustomerViewComponent
-  }]
+  },
+    {
+      path: 'checkout',
+      component: CheckoutComponent
+    }]
 }];
 
 @NgModule({

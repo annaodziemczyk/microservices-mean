@@ -21,13 +21,12 @@ export class CustomerViewComponent implements OnInit {
 
   selectMenuItem = (item:string) => {
     this.selectedItem= item;
-  }
+  };
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe((user)=>{
-      this.user=user;
-      console.log(user);
-      this.customerService.getCustomer(user).subscribe(customer =>{
+    this.authService.me().subscribe((user)=>{
+      this.user=user.user;
+      this.customerService.getCustomer(this.user).subscribe(customer =>{
         this.customer = customer as Customer;
       });
     });

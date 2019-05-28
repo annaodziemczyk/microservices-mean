@@ -1,20 +1,21 @@
 const express = require('express');
 const router = express.Router();
-var request = require("request");
+const request = require("request");
+const endpoints = require("../config/endpoints");
+const _ = require("lodash");
 
 router.get('/product', getProducts);
 router.post('/product', addProduct);
-router.post('/imageUpload', uploadImage);
+router.delete('/product/:id', deleteProduct);
+router.put('/product/:id', updateProduct);
 
-const CATALOGUE_SERVICE = "http://localhost:3002/api/";
-var productImage;
+const CATALOGUE_SERVICE = endpoints.catalogueService;
 
 function getProducts(req, res) {
-  console.log("getting products");
-  var options = {
-    uri: CATALOGUE_SERVICE + "products",
-    method: 'GET'
-  };
+
+  var options = {};
+  options = _.defaults(options, CATALOGUE_SERVICE.listItems);
+  options.uri = options.uri({baseUrl:CATALOGUE_SERVICE.baseUrl});
 
   request(options, function(error, response, body) {
 
@@ -22,8 +23,22 @@ function getProducts(req, res) {
       return error;
     }
 
-    if(response.statusCode!=200){
-      res.statusCode=response.statusCode;
+    res.status = response.status;
+
+    return res.send(response.body);
+
+  });
+}
+
+function addProduct(req, res) {
+  var options = {};
+  options = _.defaults(options, CATALOGUE_SERVICE.addProduct);
+  options.uri = options.uri ({baseUrl:CATALOGUE_SERVICE.baseUrl});
+  options.body = req.body;
+
+  request(options, function(error, response, body) {
+    if(error) {
+      return error;
     }
 
     return res.send(response.body);
@@ -31,28 +46,33 @@ function getProducts(req, res) {
   });
 }
 
-function uploadImage(req, res) {
-  console.log("body" + req.body)
-}
-
-function addProduct(req, res) {
-  request.body["image"]= productImage;
-  var options = {
-    uri: CATALOGUE_SERVICE + "products",
-    method: 'POST',
-    json: true,
-    body: req.body
-  };
+function deleteProduct(req, res) {
+  var options = {};
+  options = _.defaults(options, CATALOGUE_SERVICE.deleteProduct);
+  options.uri = options.uri ({baseUrl:CATALOGUE_SERVICE.baseUrl, id:req.params.id});
 
   request(options, function(error, response, body) {
     if(error) {
       return error;
     }
 
-    if(response.statusCode!=200){
-      res.statusCode=response.statusCode;
+    return res.send(response.body);
+
+  });
+}
+
+function updateProduct(req, res) {
+  var options = {};
+  options = _.defaults(options, CATALOGUE_SERVICE.updateProduct);
+  options.uri = options.uri ({baseUrl:CATALOGUE_SERVICE.baseUrl, id:req.params.id});
+  options.body = req.body;
+
+  request(options, function(error, response, body) {
+    if(error) {
+      return error;
     }
-    return res.json();
+
+    return res.send(response.body);
 
   });
 }

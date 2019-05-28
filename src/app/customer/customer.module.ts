@@ -11,20 +11,32 @@ import {AccountMenuComponent} from "./accountmenu/account.menu.component";
 import {CustomerService} from "./customer.service";
 import {CustomerViewComponent} from "./accountview/account.view.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {AddAddressComponent} from "./addressbook/addaddress/add.address.component";
+import {MatButtonModule, MatFormFieldModule, MatRadioModule} from "@angular/material";
+import {CheckoutComponent} from "./checkout/checkout.component";
+import {AddressComponent} from "./addressbook/address/address.component";
+import {DeliveryComponent} from "./checkout/delivery/delivery.component";
 
 @NgModule({
   imports: [
+    MatRadioModule,
     CommonModule,
     SharedModule,
     CustomerRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule,
+    MatFormFieldModule
   ],
   declarations: [
+    DeliveryComponent,
+    AddressComponent,
     AccountMenuComponent,
     OrdersComponent,
     AddressBookComponent,
     CustomerAccountComponent,
-    CustomerViewComponent
+    CustomerViewComponent,
+    AddAddressComponent,
+    CheckoutComponent
   ],
   providers: [
     AuthService,

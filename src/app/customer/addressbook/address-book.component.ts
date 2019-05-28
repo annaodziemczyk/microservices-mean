@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from "@angular/core";
 export class AddressBookComponent implements OnInit {
 
   @Input() customer: any = {};
+  @Input() user:any = {};
 
   constructor(){
 

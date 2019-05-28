@@ -1,0 +1,62 @@
+<div class="account-view">
+  <h1>Checkout</h1>
+  <div fxLayout="row" fxLayoutGap="32px">
+    <div fxLayout="column" fxLayoutGap="32px">
+      <div class="account-view-card">
+        <h3>Email Address</h3>
+        <div *ngIf="user">{{user.email}}</div>
+      </div>
+      <div class="account-view-card">
+        <h3>Delivery Address</h3>
+        <div *ngIf="customer">
+          <address-display [address]="customer.primaryAddress"></address-display>
+          <button mat-raised-button>Change</button>
+        </div>
+        <address-form *ngIf="!customer" [user]="user" [showHeader]="false"> </address-form>
+      </div>
+      <div class="account-view-card">
+        <h3>Delivery Options</h3>
+        <delivery></delivery>
+      </div>
+      <div class="account-view-card">
+        <h3>Payment</h3>
+        <h4>Billing Address</h4>
+
+        <address-display [address]="customer.primaryAddress" [user]="user" [editMode]="!customer"></address-display>
+
+        <hr/>
+        <h4>Payment Type</h4>
+        <mat-radio-group fxLayout="row" fxLayoutGap="20px">
+          <mat-radio-button value="CARD">Debit/Credit Card</mat-radio-button>
+          <mat-radio-button value="PAYPAL">Paypal</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="account-view-card">
+      <div *ngIf="cart" fxLayout="column" fxLayoutGap="20px">
+        <div *ngFor="let item of cart.itemsInCart">
+          <div style="font-weight: bold">&euro;{{item.price}}</div>
+          <div>{{item.name}}</div>
+          <div>Qty:{{item.quantity}}</div>
+        </div>
+      </div>
+      <hr/>
+      <div fxLayout="row" fxLayoutGap="35px">
+        <div fxLayout="column" fxLayoutGap="15px">
+          <div>Subtotal</div>
+          <div>Delivery</div>
+          <div style="font-weight: bold">TOTAL TO PAY</div>
+        </div>
+        <div fxLayout="column" fxLayoutGap="15px">
+          <div>&euro; {{getSubTotal()}}</div>
+          <div>&euro; {{deliveryCost}}</div>
+          <div style="font-weight: bold">&euro; {{getTotal()}}</div>
+        </div>
+      </div>
+      <button class="order-btn mat-primary" mat-raised-button>Place order</button>
+    </div>
+
+  </div>
+
+</div>
+

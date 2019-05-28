@@ -1,4 +1,9 @@
-<div class="account-view" fxLayout="column">
-  <h2>Address Book</h2>
+<div class="account-view" fxLayout="column" fxLayoutGap="20px">
+  <div >
+    <div>
+      <address-display [address]="customer.primaryAddress" [user]="user" [editMode]="!customer" title="Delivery Address"></address-display>
+    </div>
+  </div>
+
 </div>
 

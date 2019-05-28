@@ -1,6 +1,9 @@
-export interface Product{
+export class Product{
+  _id:string;
   name: string;
   price: number;
   quantity: number;
-  img: File;
+  image:any;
+
+  constructor(){}
 }

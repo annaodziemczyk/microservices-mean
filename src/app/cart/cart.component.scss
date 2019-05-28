@@ -1,0 +1,16 @@
+.cart-view{
+  padding:20px;
+  & table{
+    margin-top:10px;
+    margin-bottom: 20px;
+    width:100%;
+  }
+  & .cart-header{
+    width: 100%;
+  }
+
+  & tr.mat-footer-row {
+    font-weight: bold;
+  }
+
+}

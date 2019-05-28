@@ -1,11 +1,21 @@
 <div class="product-list">
-  <div *ngIf="products && products.length>0"  fxLayout="column" fxLayoutGap="32px">
+  <div *ngIf="products && products.length>0"  fxLayout="row wrap" fxLayoutGap="32px" >
     <div class="product-card" *ngFor="let product of products">
       <img class="product-img" [src]="product.img"/>
       <div class="product-info">
         <div class="product-title">{{product.name}}</div>
-        <div class="product-price">{{product.price}}</div>
+        <div class="product-price">&euro;{{product.price}}</div>
+        <div *ngIf="user && user.isAdmin">Qty: {{product.quantity}}</div>
+        <button *ngIf="user && user.isAdmin" class="edit-product-btn" mat-icon-button (click)="editProduct(product)">
+          <mat-icon class="button" >edit</mat-icon>
+        </button>
       </div>
+      <button *ngIf="!user || !user.isAdmin" class="fixed-fab-btn" mat-mini-fab (click)="addToCart(product)">
+        <mat-icon class="button" >add_shopping_cart</mat-icon>
+      </button>
+      <button *ngIf="user && user.isAdmin" class="remove-product-btn" mat-icon-button (click)="removeProduct(product)">
+        <mat-icon class="button" >clear</mat-icon>
+      </button>
     </div>
   </div>
   <div class="no-items-box" *ngIf="!products || (products && products.length==0)">

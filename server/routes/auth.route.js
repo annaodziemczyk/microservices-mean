@@ -1,6 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-var request = require("request");
+const request = require("request");
+const endpoints = require("../config/endpoints");
+const _ = require("lodash");
 
 const router = express.Router();
 module.exports = router;
@@ -9,15 +11,13 @@ router.post('/register', asyncHandler(register), login);
 router.post('/login', login);
 router.get('/me', token);
 
+const USER_SERVICE = endpoints.usersService;
 
 async function register(req, res, next) {
-  var options = {
-    uri: "http://localhost:3001/api/register",
-    method: 'POST',
-    json: true,
-    body: req.body
-  };
-  console.log("register");
+  var options = {};
+  options = _.defaults(options, USER_SERVICE.register);
+  options.uri = USER_SERVICE.register.uri({baseUrl:USER_SERVICE.baseUrl});
+  options.body = req.body;
 
   request(options, function(error, response, body) {
       if(error) {
@@ -25,54 +25,40 @@ async function register(req, res, next) {
       }
 
       return res.send(response.body);
-
-
   });
-
 }
 
 function login(req, res) {
-  var options = {
-    uri: "http://localhost:3001/api/login",
-    method: 'POST',
-    json: true,
-    body: req.body
-  };
+
+  var options = {};
+  options = _.defaults(options, USER_SERVICE.login);
+  options.uri = USER_SERVICE.login.uri({baseUrl:USER_SERVICE.baseUrl});
+  options.body = req.body;
+  console.log(req.body);
 
   request(options, function(error, response, body) {
     if(error) {
       return error;
     }
 
-    if(response.statusCode!=200){
-      res.statusCode=response.statusCode;
-      return res.send();
-    }else{
-      return res.send(response.body);
-    }
+    return res.send(response.body);
 
   });
 }
 
 function token(req, res) {
 
-  var options = {
-    uri: "http://localhost:3001/api/token",
-    method: 'POST',
-    headers: req.headers
-  };
+  var options = {};
+  options = _.defaults(options, USER_SERVICE.token);
+  options.uri = USER_SERVICE.token.uri({baseUrl:USER_SERVICE.baseUrl});
+  options.headers = req.headers;
 
   request(options, function(error, response, body) {
     if(error) {
       return error;
     }
 
-    if(response.statusCode!=200){
-      res.statusCode=response.statusCode;
-      return res.send();
-    }else{
-      return res.send(response.body);
-    }
+    return res.send(response.body);
 
   });
 

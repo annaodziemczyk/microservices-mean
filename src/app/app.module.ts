@@ -16,18 +16,22 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import {HomeComponent} from './home/home.component';
 import { CartComponent } from './cart/cart.component';
-import {MatDialogModule, MatGridListModule, MatTableModule} from "@angular/material";
+import {MatDialogModule, MatGridListModule, MatSnackBarModule, MatTableModule} from "@angular/material";
 import {ProductModule} from "./product/product.module";
 import {CustomerModule} from "./customer/customer.module";
+import {CartService} from "./cart/cart.service";
+import {CheckoutComponent} from "./customer/checkout/checkout.component";
+import {PreviousRouteService} from "./app-routing/previous.route.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
     CartComponent,
+    HomeComponent,
   ],
   imports: [
+    MatSnackBarModule,
     MatDialogModule,
     MatTableModule,
     MatGridListModule,
@@ -42,7 +46,10 @@ import {CustomerModule} from "./customer/customer.module";
     AppRoutingModule,
     ProductModule,
   ],
-  providers: [{
+  providers: [
+    CartService,
+    PreviousRouteService,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthHeaderInterceptor,
     multi: true,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CustomerService} from "../customer/customer.service";
 
 export interface User {
   select:boolean;
@@ -29,11 +30,15 @@ export class AdminComponent implements OnInit {
 
   displayedColumns: string[];
   dataSource = ELEMENT_DATA;
+  public customerList:Customer[]=[];
 
-  constructor() {}
+  constructor(private customerService:CustomerService) {}
 
   public ngOnInit() {
     this.displayedColumns = ['select', 'position', 'name', 'email'];
+    this.customerService.getCustomers().subscribe((customers:any)=>{
+      this.customerList=customers;
+    });
     this.dataSource = ELEMENT_DATA;
   }
 }

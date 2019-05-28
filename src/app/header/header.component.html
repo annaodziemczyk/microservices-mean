@@ -5,13 +5,13 @@
     <a class="links side" [routerLink]="['/auth/login']" *ngIf="!user">Login</a>
     <div>
       <button mat-button [routerLink]="['']">Shop</button>
-      <a class="links side" *ngIf="user">
-        <mat-icon [routerLink]="['cart']" >shopping_cart</mat-icon>
+      <a class="links side">
+        <mat-icon [routerLink]="['cart']" *ngIf="!user || !user.isAdmin" >shopping_cart</mat-icon>
       </a>
     </div>
     <div>
       <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu">
-        <mat-icon>account_circle</mat-icon>{{user.fullname}}
+        <mat-icon>account_circle</mat-icon>{{user.firstName}} {{user.lastName}}
       </a>
       <mat-menu #menu="matMenu">
         <button mat-menu-item *ngIf="user && user.isAdmin" [routerLink]="['/admin']">Admin</button>
@@ -21,4 +21,5 @@
     </div>
   </mat-toolbar>
 </header>
+
 
