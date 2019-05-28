@@ -10,9 +10,10 @@
     <input matInput placeholder="Price" [(ngModel)]="data.price" required>
   </mat-form-field>
   <div class="file-uploader">
-    <angular-file-uploader
-      [config]="afuConfig">
-    </angular-file-uploader>
+    <input type="file" (change)="upload($event.target.files)" />
+    <!--<angular-file-uploader-->
+      <!--[config]="afuConfig">-->
+    <!--</angular-file-uploader>-->
   </div>
 </div>
 <div mat-dialog-actions>

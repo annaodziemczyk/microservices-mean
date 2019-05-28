@@ -1,5 +1,10 @@
 <div fxLayout="column" fxLayoutGap="5px" class="add-address-form">
   <h2 *ngIf="showHeader">Add Address</h2>
+  <!--<mat-select>-->
+    <!--<mat-option *ngFor="let address of addressList" [value]="address._id">-->
+      <!--{{address.addressLine1}}-->
+    <!--</mat-option>-->
+  <!--</mat-select>-->
   <mat-form-field>
     <input matInput placeholder="Address" [(ngModel)]="address.addressLine1" required>
   </mat-form-field>
@@ -19,7 +24,7 @@
     <input matInput placeholder="Mobile" [(ngModel)]="contact.telnumber" required>
   </mat-form-field>
   <div>
-    <button mat-button>Cancel</button>
+    <button mat-button (click)="cancelEntry()">Cancel</button>
     <button mat-button (click)="addAddress()">Save</button>
   </div>
 </div>

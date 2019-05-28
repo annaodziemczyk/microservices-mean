@@ -8,7 +8,7 @@
       baseUrl:"http://localhost:3004/api/",
       listCustomers:
         {
-          uri: "<%= baseUrl %>customer",
+          uri: _.template("<%= baseUrl %>customer"),
           method: 'GET'
         },
       getSingleCustomer:
@@ -58,6 +58,11 @@
     },
     usersService: {
       baseUrl:"http://localhost:3001/api/",
+      listUsers:
+        {
+          uri: _.template("<%= baseUrl %>user"),
+          method: 'GET'
+        },
       login:
         {
           uri: _.template("<%= baseUrl %>login"),
@@ -87,17 +92,20 @@
       addProduct:
         {
           uri: _.template("<%= baseUrl %>products"),
-          method: 'POST'
+          method: 'POST',
+          encoding:'binary'
         },
       deleteProduct:
         {
           uri: _.template("<%= baseUrl %>products/<%= id %>"),
-          method: 'DELETE'
+          method: 'DELETE',
+          json:true
         },
       updateProduct:
         {
           uri:_.template("<%= baseUrl %>products/<%= id %>"),
-          method: 'PUT'
+          method: 'PUT',
+          json:true
         }
     },
     cartService: {

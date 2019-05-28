@@ -3,6 +3,7 @@ const router = express.Router();
 const request = require("request");
 const endpoints = require("../config/endpoints");
 const _ = require("lodash");
+const fs = require("fs");
 
 router.get('/product', getProducts);
 router.post('/product', addProduct);
@@ -34,7 +35,8 @@ function addProduct(req, res) {
   var options = {};
   options = _.defaults(options, CATALOGUE_SERVICE.addProduct);
   options.uri = options.uri ({baseUrl:CATALOGUE_SERVICE.baseUrl});
-  options.body = req.body;
+  //req.fields["file"] = fs.createReadStream(req.files["image"].path);
+  options.formData = req.fields;
 
   request(options, function(error, response, body) {
     if(error) {

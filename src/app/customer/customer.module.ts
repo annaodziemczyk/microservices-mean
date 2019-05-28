@@ -12,13 +12,14 @@ import {CustomerService} from "./customer.service";
 import {CustomerViewComponent} from "./accountview/account.view.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AddAddressComponent} from "./addressbook/addaddress/add.address.component";
-import {MatButtonModule, MatFormFieldModule, MatRadioModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatRadioModule, MatSelectModule} from "@angular/material";
 import {CheckoutComponent} from "./checkout/checkout.component";
 import {AddressComponent} from "./addressbook/address/address.component";
 import {DeliveryComponent} from "./checkout/delivery/delivery.component";
 
 @NgModule({
   imports: [
+    MatSelectModule,
     MatRadioModule,
     CommonModule,
     SharedModule,

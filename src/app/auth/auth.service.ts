@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { TokenStorage } from './token.storage';
 import {LocalStorage} from "@ngx-pwa/local-storage";
+import {Customer} from "../customer/Customer";
 
 @Injectable()
 export class AuthService {
@@ -50,6 +51,17 @@ export class AuthService {
       })
     });
   }
+
+  listUsers(): Observable <Customer[]>{
+    return Observable.create(observer => {
+      this.http.get('/api/user/list')
+        .subscribe((data : any) => {
+          observer.next(data);
+          observer.complete();
+        })
+    });
+  }
+
 
   setUser(user): void {
     if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);

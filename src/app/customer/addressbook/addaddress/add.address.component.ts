@@ -15,12 +15,19 @@ export class AddAddressComponent implements OnInit {
   @Input() customer: any;
   @Input() showHeader: boolean = true;
   @Input() onSave:(address:Address)=>{};
+  @Input() onCancel:()=>{};
 
   public address:Address = new Address();
   public contact:Contact = new Contact();
+  public addressList:Address[] = [];
+  public contactList:Contact[] = [];
 
   constructor(private customerService:CustomerService){
 
+  }
+  cancelEntry= ()=>{
+    if(this.onCancel)
+      this.onCancel();
   }
   addAddress = ()=> {
     if(_.isNil(this.customer)){
@@ -39,7 +46,7 @@ export class AddAddressComponent implements OnInit {
 
       });
     }else{
-      this.customerService.addAddress(this.user.id, this.address).subscribe((customer)=>{
+      this.customerService.addAddress(this.user._id, this.address).subscribe((customer)=>{
         if(this.onSave){
           this.onSave(customer.primaryAddress);
         }
@@ -48,8 +55,13 @@ export class AddAddressComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.address = _.defaults(this.address);
-    this.contact = _.defaults(this.contact);
+
+    if(this.customer){
+      this.address = this.customer.primaryAddress;
+      this.contact = this.customer.primaryContactNumber;
+      this.addressList = _.concat([this.customer.primaryAddress],this.customer.addresses);
+      this.contactList = _.concat([this.customer.primaryContactNumber], this.customer.contacts);
+    }
   }
 
 }

@@ -5107,7 +5107,7 @@ mobx@^3.6.2:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-3.6.2.tgz#fb9f5ff5090539a1ad54e75dc4c098b602693320"
 
-moment@2.x.x:
+moment@2.x.x, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -5269,6 +5269,13 @@ ng2-dragula@^1.5.0:
   resolved "https://registry.yarnpkg.com/ng2-dragula/-/ng2-dragula-1.5.0.tgz#12a221d7a34fc629cc74dc98efb26448290eb6e5"
   dependencies:
     dragula "^3.7.2"
+
+ngx-moment@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/ngx-moment/-/ngx-moment-3.4.0.tgz#53bd64557e552c612b0f68b975d1c7ed34f28dfc"
+  integrity sha512-GEqzSsu12VsXXP35aerlQpuZ1ienEYQZxHmp+RH7EuJD7hWamKgLOpmbiDI9Ij3KLW/UApvonYzZvyRSv3ea/w==
+  dependencies:
+    tslib "^1.9.0"
 
 nice-try@^1.0.4:
   version "1.0.5"

@@ -20,6 +20,7 @@ function addAddress(req, res) {
   options = _.defaults(options, CUSTOMER_SERVICE.addAddress);
   options.uri = options.uri({baseUrl:CUSTOMER_SERVICE.baseUrl, id:req.params.id});
   options.body=req.body;
+  console.log(options.uri);
 
   request(options, function(error, response, body) {
 

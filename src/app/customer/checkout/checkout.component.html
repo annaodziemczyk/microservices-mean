@@ -8,11 +8,7 @@
       </div>
       <div class="account-view-card">
         <h3>Delivery Address</h3>
-        <div *ngIf="customer">
-          <address-display [address]="customer.primaryAddress"></address-display>
-          <button mat-raised-button>Change</button>
-        </div>
-        <address-form *ngIf="!customer" [user]="user" [showHeader]="false"> </address-form>
+        <address-display [customer]="customer" [user]="user" [editMode]="!customer"></address-display>
       </div>
       <div class="account-view-card">
         <h3>Delivery Options</h3>
@@ -21,9 +17,7 @@
       <div class="account-view-card">
         <h3>Payment</h3>
         <h4>Billing Address</h4>
-
-        <address-display [address]="customer.primaryAddress" [user]="user" [editMode]="!customer"></address-display>
-
+        <address-display [customer]="customer" [user]="user" [editMode]="!customer"></address-display>
         <hr/>
         <h4>Payment Type</h4>
         <mat-radio-group fxLayout="row" fxLayoutGap="20px">

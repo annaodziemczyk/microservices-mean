@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
+import {Address} from "../../Address";
 
 @Component({
   selector: 'address-display',
@@ -7,10 +8,9 @@ import {Component, Input, OnInit} from "@angular/core";
 })
 export class AddressComponent implements OnInit {
 
-  @Input() address: any = {};
   @Input() editMode: any = false;
-  @Input() user: any = {};
-  @Input() customer:any = {};
+  @Input() user: any;
+  @Input() customer:any;
   @Input() title: any;
 
   changeMode= ()=>{
@@ -18,10 +18,15 @@ export class AddressComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
   }
 
   onSave = (newAddress)=>{
-    this.address=newAddress;
+    this.customer.primaryAddress=newAddress;
+    this.editMode=false;
+  };
+
+  onCancel = ()=>{
     this.editMode=false;
   }
 
