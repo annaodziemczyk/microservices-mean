@@ -35,5 +35,6 @@ import {AddAddressComponent} from "../customer/addressbook/addaddress/add.addres
   providers: [
     OnlyAdminUsersGuard
   ],
-  entryComponents: [AddAddressComponent, UpdateCustomerComponent])
+  entryComponents: [AddAddressComponent, UpdateCustomerComponent]
+})
 export class AdminModule {}
