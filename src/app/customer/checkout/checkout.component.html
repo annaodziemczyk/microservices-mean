@@ -12,7 +12,7 @@
       </div>
       <div class="account-view-card">
         <h3>Delivery Options</h3>
-        <delivery></delivery>
+        <delivery [onDeliveryOptionChange]="onDeliveryOptionChange"></delivery>
       </div>
       <div class="account-view-card">
         <h3>Payment</h3>
@@ -43,7 +43,7 @@
         </div>
         <div fxLayout="column" fxLayoutGap="15px">
           <div>&euro; {{getSubTotal()}}</div>
-          <div>&euro; {{deliveryCost}}</div>
+          <div>&euro; {{selectedDeliveryOption.price}}</div>
           <div style="font-weight: bold">&euro; {{getTotal()}}</div>
         </div>
       </div>

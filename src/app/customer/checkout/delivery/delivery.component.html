@@ -9,9 +9,9 @@
         <div>{{option.estimatedDelivery}}</div>
       </div>
     </div>
-    <mat-radio-group fxLayout="column" fxLayoutGap="70px">
+    <mat-radio-group fxLayout="column" fxLayoutGap="70px" [(ngModel)]="selectedOption">
 
-      <mat-radio-button *ngFor="let option of deliveryOptions" [value]="option.name"></mat-radio-button>
+      <mat-radio-button (change)="optionChange($event)" *ngFor="let option of deliveryOptions" [value]="option.name"></mat-radio-button>
 
     </mat-radio-group>
   </div>

@@ -22,7 +22,9 @@ export class ProductService {
 
   addProduct(product): Observable <any>{
     return Observable.create(observer => {
-      this.http.post('/api/catalogue/product', product)
+      this.http.post('/api/catalogue/product', product, {
+        headers:{'Content-Type':undefined}
+      })
         .subscribe((data : any) => {
         observer.next(data);
         observer.complete();

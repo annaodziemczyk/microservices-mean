@@ -37,6 +37,8 @@ function addProduct(req, res) {
   options.uri = options.uri ({baseUrl:CATALOGUE_SERVICE.baseUrl});
   //req.fields["file"] = fs.createReadStream(req.files["image"].path);
   options.formData = req.fields;
+  console.log(req.fields);
+  console.log(req.body);
 
   request(options, function(error, response, body) {
     if(error) {

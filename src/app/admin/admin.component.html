@@ -2,11 +2,6 @@
   <mat-tab label="Users">
     <table *ngIf="userList" mat-table [dataSource]="userList" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>  </th>
-        <td mat-cell *matCellDef="let user" > <mat-checkbox [checked]="user.select" (click)="drawer.toggle()"></mat-checkbox></td>
-      </ng-container>
-
       <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef> First Name </th>
         <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
@@ -17,6 +12,20 @@
         <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let customer">
+          <mat-icon (click)="updateCustomer(customer)">edit</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let customer">
+          <mat-icon (click)="removeCustomer(customer)">delete</mat-icon>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="userColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: userColumns;"></tr>
     </table>
@@ -24,43 +33,46 @@
   </mat-tab>
 
   <mat-tab label="Customers">
-    <mat-drawer-container class="customer-listview" [hasBackdrop]="false">
-      <mat-drawer #drawer mode="push">
-        <!--<address-display *ngIf="selectedCustomer" [address]="slectedCustomer.primaryAddress"></address-display>-->
-      </mat-drawer>
-      <mat-drawer-content>
-        <table mat-table [dataSource]="customerList" class="mat-elevation-z8">
 
-          <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef>  </th>
-            <td mat-cell *matCellDef="let customer" > <mat-checkbox [checked]="customer.select" (click)="drawer.toggle(); selectedCustomer=customer"></mat-checkbox></td>
-          </ng-container>
+    <table mat-table [dataSource]="customerList" class="mat-elevation-z8">
 
-          <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef> First Name </th>
-            <td mat-cell *matCellDef="let customer"> {{customer.firstName}} </td>
-          </ng-container>
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let customer"> {{customer.firstName}} </td>
+      </ng-container>
 
-          <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef> Last Name </th>
-            <td mat-cell *matCellDef="let customer"> {{customer.lastName}} </td>
-          </ng-container>
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let customer"> {{customer.lastName}} </td>
+      </ng-container>
 
-          <ng-container matColumnDef="address">
-            <th mat-header-cell *matHeaderCellDef> Address </th>
-            <td mat-cell *matCellDef="let customer"> {{customer.primaryAddress.addressLine1}} </td>
-          </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let customer"> {{customer.primaryAddress.addressLine1}} </td>
+      </ng-container>
 
-          <ng-container matColumnDef="contact">
-            <th mat-header-cell *matHeaderCellDef> Contact </th>
-            <td mat-cell *matCellDef="let customer"> {{customer.primaryContactNumber.telnumber}} </td>
-          </ng-container>
+      <ng-container matColumnDef="contact">
+        <th mat-header-cell *matHeaderCellDef> Contact </th>
+        <td mat-cell *matCellDef="let customer"> {{customer.primaryContactNumber.telnumber}} </td>
+      </ng-container>
 
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let customer">
+          <mat-icon (click)="updateCustomer(customer)">edit</mat-icon>
+        </td>
+      </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="customerColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: customerColumns;"></tr>
-        </table>
-      </mat-drawer-content>
-    </mat-drawer-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let customer">
+          <mat-icon (click)="removeCustomer(customer)">delete</mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="customerColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: customerColumns;"></tr>
+    </table>
+
   </mat-tab>
 </mat-tab-group>

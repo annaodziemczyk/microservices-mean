@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {AfterViewChecked, Component, Input, OnInit} from "@angular/core";
 import {Address} from "../../Address";
 
 @Component({
@@ -6,20 +6,17 @@ import {Address} from "../../Address";
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent implements AfterViewChecked {
 
   @Input() editMode: any = false;
   @Input() user: any;
   @Input() customer:any;
   @Input() title: any;
+  @Input() address; any;
 
   changeMode= ()=>{
     this.editMode=!this.editMode;
   };
-
-  ngOnInit(): void {
-
-  }
 
   onSave = (newAddress)=>{
     this.customer.primaryAddress=newAddress;
@@ -28,6 +25,14 @@ export class AddressComponent implements OnInit {
 
   onCancel = ()=>{
     this.editMode=false;
+  }
+
+  ngAfterViewChecked(): void {
+    if(!(this.address && this.address.primaryAddress) && this.customer){
+      this.address = this.customer.primaryAddress;
+    }else if(!this.address){
+      this.address = new Address();
+    }
   }
 
 }

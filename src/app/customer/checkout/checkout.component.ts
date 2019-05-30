@@ -6,6 +6,8 @@ import {AuthService} from "../../auth/auth.service";
 import {Router} from "@angular/router";
 import {CustomerService} from "../customer.service";
 import {Customer} from "../Customer";
+import {Observable} from "rxjs";
+import {DeliveryOption} from "./delivery/DeliveryOption";
 
 @Component({
   selector: 'checkout',
@@ -15,9 +17,9 @@ import {Customer} from "../Customer";
 export class CheckoutComponent implements OnInit{
 
   public cart:Cart;
-  public deliveryCost:number=0.00;
   public user:any;
   public customer:Customer;
+  public selectedDeliveryOption:DeliveryOption;
 
   constructor(private authService:AuthService, private cartService:CartService, private router: Router,
               private customerService:CustomerService){
@@ -29,11 +31,17 @@ export class CheckoutComponent implements OnInit{
     return 0;
   };
   getTotal=()=>{
-    return this.getSubTotal() + this.deliveryCost;
+    return this.getSubTotal() + this.selectedDeliveryOption.price;
+  };
+
+  onDeliveryOptionChange =(option)=>{
+    this.selectedDeliveryOption=option;
+    this.getTotal();
   };
 
   ngOnInit(): void {
-    this.authService.me().subscribe((user)=>{
+
+    var authSub =  this.authService.me().subscribe((user)=>{
       if(user){
         this.user=user.user;
         this.customerService.getCustomer(this.user).subscribe((customer)=>{
@@ -49,6 +57,9 @@ export class CheckoutComponent implements OnInit{
       }
     });
 
+    if(authSub.closed){
+      this.router.navigate(['/auth/login']);
+    }
   }
 
 }

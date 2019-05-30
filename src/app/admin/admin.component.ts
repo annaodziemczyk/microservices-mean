@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {CustomerService} from "../customer/customer.service";
 import {AuthService} from "../auth/auth.service";
 import * as _ from "lodash";
+import {AddProductDialog} from "../product/addproduct/add.product.component";
+import {UpdateCustomerComponent} from "./updatecustomer/update.customer.component";
+import {MatDialog} from "@angular/material";
 
 export interface User {
   select:boolean;
@@ -32,21 +35,36 @@ export class AdminComponent implements OnInit {
   public userList:Customer[]=[];
   public customerList:Customer[]=[];
 
-  constructor(private customerService:CustomerService, private authService:AuthService) {}
+  constructor(private customerService:CustomerService, private authService:AuthService, public dialog: MatDialog) {}
 
   public ngOnInit() {
-    this.userColumns = ['select', 'firstName', 'lastName'];
-    this.customerColumns = ['select', 'firstName', 'lastName', 'address', 'contact'];
+    this.userColumns = ['firstName', 'lastName', 'edit', 'delete'];
+    this.customerColumns = ['firstName', 'lastName', 'address', 'contact', 'edit', 'delete'];
     this.authService.listUsers().subscribe((users:any)=>{
       if(_.isArray(users)){
         this.userList=users;
       }
     });
+
     this.customerService.getCustomers().subscribe((customers:any)=>{
-      this.customerList=_.map(customers, (customer)=>{
-        customer["select"] = false;
-        return customer;
-      });
+      if(_.isArray(customers)){
+        this.customerList=customers;
+      }
+    });
+  }
+
+  removeCustomer = (customer)=>{
+
+  };
+
+  updateCustomer = (customer)=>{
+    const dialogRef = this.dialog.open(UpdateCustomerComponent, {
+      width: '400px',
+      data:{customer:customer}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 }

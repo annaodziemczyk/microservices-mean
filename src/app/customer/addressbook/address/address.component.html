@@ -1,19 +1,19 @@
 <label>{{title}}</label>
-<div class="address-display" fxLayout="column" fxLayoutGap="10px" *ngIf="customer && !editMode">
+<div class="address-display" fxLayout="column" fxLayoutGap="10px" *ngIf="address && !editMode">
   <div>
-    <div>{{customer.primaryAddress.addressLine1}}</div>
+    <div>{{address.addressLine1}}</div>
   </div>
-  <div *ngIf="customer.primaryAddress.addressLine2">
-    <div>{{customer.primaryAddress.addressLine2}}</div>
-  </div>
-  <div>
-    <div>{{customer.primaryAddress.city}}</div>
+  <div *ngIf="address.addressLine2">
+    <div>{{address.addressLine2}}</div>
   </div>
   <div>
-    <div>{{customer.primaryAddress.country}}</div>
+    <div>{{address.city}}</div>
   </div>
   <div>
-    <div>{{customer.primaryAddress.postcode}}</div>
+    <div>{{address.country}}</div>
+  </div>
+  <div>
+    <div>{{address.postcode}}</div>
   </div>
   <button mat-raised-button (click)="changeMode()">Change</button>
 </div>

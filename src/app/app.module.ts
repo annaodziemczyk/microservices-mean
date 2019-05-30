@@ -22,6 +22,7 @@ import {CustomerModule} from "./customer/customer.module";
 import {CartService} from "./cart/cart.service";
 import {CheckoutComponent} from "./customer/checkout/checkout.component";
 import {PreviousRouteService} from "./app-routing/previous.route.service";
+import {MomentModule} from "ngx-moment";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {PreviousRouteService} from "./app-routing/previous.route.service";
     HomeComponent,
   ],
   imports: [
+    MomentModule,
     MatSnackBarModule,
     MatDialogModule,
     MatTableModule,
