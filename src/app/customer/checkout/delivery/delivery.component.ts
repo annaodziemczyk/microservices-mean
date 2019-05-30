@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {DeliveryOption} from "./DeliveryOption";
 import {DateFormatPipe} from "ngx-moment";
-import { MdRadioChange } from '@angular/material';
+import { MatRadioChange } from '@angular/material';
 import * as _ from "lodash";
 
 @Component({
@@ -34,7 +34,7 @@ export class DeliveryComponent implements OnInit{
     this.onDeliveryOptionChange(this.deliveryOptions[0]);
   }
 
-  optionChange(event: MdRadioChange) {
+  optionChange(event: MatRadioChange) {
     let option = _.find(this.deliveryOptions, {name: this.selectedOption});
     this.onDeliveryOptionChange(option);
   }
