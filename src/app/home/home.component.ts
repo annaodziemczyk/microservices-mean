@@ -24,7 +24,7 @@ const PRODUCT_DATA: any[] = [
 })
 export class HomeComponent implements OnInit {
 
-  private user:any;
+  public user:any;
   public products : Product[];
   dataSource = PRODUCT_DATA;
 
