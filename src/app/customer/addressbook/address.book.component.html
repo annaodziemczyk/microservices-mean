@@ -8,7 +8,7 @@
         <label *ngIf="customer">Other Addresses</label>
         
       </div>
-      <address-display *ngFor="let address of customer.addresses" [customer]="customer" [user]="user" ></address-display>
+      <address-display *ngIf="customer" *ngFor="let address of customer.addresses" [customer]="customer" [user]="user" ></address-display>
     </div>
   </div>
 
