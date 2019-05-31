@@ -4,7 +4,7 @@
       <address-display [customer]="customer" [user]="user" title="Delivery Address" [address]="customer.primaryAddress"></address-display>
     </div>
     <div *ngIf="!customer">
-      <address-display [customer]="customer" [user]="user" title="Delivery Address"></address-display>
+      <address-display [customer]="customer" [user]="user" title="Delivery Address" [address]="newAddress">></address-display>
     </div>
     <div>
       <div>
