@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, Input, OnInit} from "@angular/core";
+import {AfterViewChecked, Component, Input, OnChanges} from "@angular/core";
 import {Address} from "../../Address";
 
 @Component({
@@ -6,7 +6,7 @@ import {Address} from "../../Address";
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
 })
-export class AddressComponent implements AfterViewChecked {
+export class AddressComponent implements AfterViewChecked, OnChanges{
 
   @Input() editMode: any = false;
   @Input() user: any;
@@ -27,10 +27,14 @@ export class AddressComponent implements AfterViewChecked {
     this.editMode=false;
   }
 
-  ngAfterViewChecked(): void {
-    if(!(this.address && this.address.primaryAddress) && this.customer){
+ngOnChanges() :void{
+if(!(this.address && this.address.primaryAddress) && this.customer){
       this.address = this.customer.primaryAddress;
     }
+}
+
+  ngAfterViewChecked(): void {
+    
   }
 
 }
