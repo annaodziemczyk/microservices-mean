@@ -30,8 +30,6 @@ export class AddressComponent implements AfterViewChecked {
   ngAfterViewChecked(): void {
     if(!(this.address && this.address.primaryAddress) && this.customer){
       this.address = this.customer.primaryAddress;
-    }else if(!this.address){
-      this.address = new Address();
     }
   }
 
