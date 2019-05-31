@@ -83,7 +83,7 @@
         }
     },
     catalogueService: {
-      baseUrl:"http://35.192.234.77:3002/api/",
+      baseUrl:"http://10.15.242.73:3002/api/",
       listItems:
         {
           uri: _.template("<%= baseUrl %>products"),
