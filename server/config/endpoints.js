@@ -109,7 +109,7 @@
         }
     },
     cartService: {
-      baseUrl:"http://34.66.56.100:3003/api/",
+      baseUrl:"http://35.228.9.192:3003/api/",
       listCart:
         {
           uri: _.template("<%= baseUrl %>cart/<%= id %>"),
