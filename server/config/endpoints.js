@@ -5,7 +5,7 @@
 
   module.exports = {
     customerService: {
-      baseUrl:"http://localhost:3004/api/",
+      baseUrl:"http://35.184.198.212:3004/api/",
       listCustomers:
         {
           uri: _.template("<%= baseUrl %>customer"),
@@ -57,7 +57,7 @@
 
     },
     usersService: {
-      baseUrl:"http://localhost:3001/api/",
+      baseUrl:"http://35.246.37.49:3001/api/",
       listUsers:
         {
           uri: _.template("<%= baseUrl %>user"),
@@ -83,7 +83,7 @@
         }
     },
     catalogueService: {
-      baseUrl:"http://localhost:3002/api/",
+      baseUrl:"http://35.192.234.77:3002/api/",
       listItems:
         {
           uri: _.template("<%= baseUrl %>products"),
@@ -109,7 +109,7 @@
         }
     },
     cartService: {
-      baseUrl:"http://localhost:3003/api/",
+      baseUrl:"http://34.66.56.100:3003/api/",
       listCart:
         {
           uri: _.template("<%= baseUrl %>cart/<%= id %>"),
