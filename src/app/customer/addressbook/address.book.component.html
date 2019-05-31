@@ -1,7 +1,10 @@
 <div class="account-view" fxLayout="column" fxLayoutGap="20px">
   <div>
-    <div>
+    <div *ngIf="customer">
       <address-display [customer]="customer" [user]="user" title="Delivery Address" [address]="customer.primaryAddress"></address-display>
+    </div>
+    <div *ngIf="!customer">
+      <address-display [customer]="customer" [user]="user" title="Delivery Address"></address-display>
     </div>
     <div>
       <div>
