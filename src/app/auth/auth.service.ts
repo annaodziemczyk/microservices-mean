@@ -86,9 +86,11 @@ export class AuthService {
         }
       };
       this.http.get('/api/auth/me', options).subscribe((data : any) => {
-        observer.next({user: data.user});
-        this.setUser(data.user);
-        observer.complete();
+        if(data){
+          observer.next({user: data.user});
+          this.setUser(data.user);
+          observer.complete();
+        }
       })
     });
   }
